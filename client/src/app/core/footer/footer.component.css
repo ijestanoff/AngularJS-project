@@ -1,0 +1,50 @@
+/* ---------------Footer ---------------------- */
+footer{
+    background: #06262d;
+    height: 200px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bar {
+    height: 120px;
+    display: flex;
+    color: white;
+}
+
+.footer-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-buttons a:hover{
+    text-decoration: underline;
+}
+
+.footer-bar p{
+    align-content: center;
+    font-size: 1.5em;
+}
+
+
+.social a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.social a:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+span{
+    margin-right: 100px;
+    display: flex;
+    gap: 20px;
+    font-size: 40px; /* Icon size */
+}
+
+span>a>i{
+    color: white;
+    margin-top: 30px;
+}
