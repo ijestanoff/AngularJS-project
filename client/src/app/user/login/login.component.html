@@ -1,0 +1,37 @@
+<section class="login">
+    <div>
+        <p>Login Form</p>
+        <div class="input-container">
+            <input 
+            type="email"
+            name="email"
+            id="email"
+            placeholder="my.email@yahoo.com"
+            #inputEmail="ngModel"
+            ngModel
+            required
+            />
+            <label for="email">email</label>
+        </div>
+        <div class="input-container">
+            <input 
+                type="password"
+                name="password"
+                id="password"
+                placeholder="**********"
+                ngModel
+                #inputPassword="ngModel"
+                minlength="5"
+                required
+            />
+            <label for="password">password</label>
+        </div>
+        <button>
+            Login
+        </button>
+        <div class="not-register">
+            <p>Not registered yet?</p>
+            <a href="#">Register here</a>
+        </div>
+    </div>
+</section>

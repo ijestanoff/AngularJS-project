@@ -1,0 +1,102 @@
+/* -----------------Login form---------------------- */
+
+.login{
+    display: flex;
+    margin: 100px auto;
+    justify-content: center;
+}
+
+.login>div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 800px;
+    width: 600px;
+    margin: 50 auto;
+    border: 1px solid #e1e5e5;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.login>div>p{
+    font-size: 2em;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #035c67;
+}
+
+/* --------------------------------*/
+
+.input-container {
+    position: relative;
+    width: 500px;
+    margin: 20px auto;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 24px;
+}
+
+label {
+    position: absolute;
+    top: -10px; /* Push label to the border */
+    left: 10px; /* Align label with input padding */
+    background: white; /* Background color to "hide" input border behind */
+    padding: 0 5px; /* Spacing to look good */
+    font-size: 14px;
+    color: #333;
+}
+
+/* Optional: Input focus effect */
+input:focus {
+    border-color: #007BFF;
+}
+
+input:focus + label {
+    color: #007BFF; /* Highlight label on focus */
+}
+
+button {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    width: 500px;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 5px;
+    background: #035c67;
+    color: white;
+    font-size: 1.4em;
+    border: none;
+}
+
+button:hover{
+    background: inherit;
+    color: #035c67;
+    border: 1px solid #035c67;
+    cursor: pointer;
+}
+
+.not-register{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin: 20px auto;
+    justify-content: center;
+    font-style: italic;
+}
+
+.not-register a{
+    color: #035c67;
+    font-style:normal;
+    font-weight: 600;
+}
+
+.not-register a:hover{
+    font-size: 1.1em;
+}
