@@ -5,11 +5,12 @@ import { emailValidator } from '../../../utils/email.validator';
 import { DOMAINS } from '../../constant';
 import { matchPasswordsValidator } from '../../../utils/match-passwords.validators';
 import { UserService } from '../user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

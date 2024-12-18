@@ -1,73 +1,133 @@
-<section class="register">
-    <div>
-        <p>Register Form</p>
-        <div class="input-container">
-            <input 
-            type="text"
-            name="name"
-            id="name"
-            placeholder="My name"
-            #inputEmail="ngModel"
-            ngModel
-            required
-            />
-            <label for="name">Full Name *</label>
-        </div>
-        <div class="input-container">
-            <input 
-            type="email"
-            name="email"
-            id="email"
-            placeholder="my.email@yahoo.com"
-            #inputEmail="ngModel"
-            ngModel
-            required
-            />
-            <label for="email">Email *</label>
-        </div>
-        <div class="input-container">
-            <input 
-            type="text"
-            name="tel"
-            id="tel"
-            placeholder="+359-888-685-321"
-            #inputEmail="ngModel"
-            ngModel
-            required
-            />
-            <label for="tel">Phone Number</label>
-        </div>
-        <div class="input-container">
-            <input 
-                type="password"
-                name="password"
-                id="password"
-                ngModel
-                #inputPassword="ngModel"
-                minlength="5"
-                required
-            />
-            <label for="password">Password *</label>
-        </div>
-        <div class="input-container">
-            <input 
-                type="password"
-                name="rePassword"
-                id="rePassword"
-                ngModel
-                #inputPassword="ngModel"
-                minlength="5"
-                required
-            />
-            <label for="rePassword">Repeat Password *</label>
-        </div>
+<form [formGroup]="form" (ngSubmit)="register()">
+    <section class="register">
+        <div>
+            <p>Register Form</p>
 
-        <button>
-            Register
-        </button>
-        <div class="not-register">
-            <p>Already have login?</p>
-            <a href="#">Login here</a>
+            <div class="input-container">
+                <input
+                    [class]="isFieldTextMissing('username') || isNotMinLength ? 'input-error' : ''"
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="My name"
+                    formControlName="username"
+                />
+                <label for="username">Full Name *</label>
+            </div>
+
+            @if (form.get('username')?.touched) {
+                <div>
+                    @if (form.get('username')?.errors?.['required']) {
+                        <p class="error">Username is required!</p>
+                    }
+                    @if (form.get('username')?.errors?.['minlength']) {
+                        <p class="error">Username must be at least 5 characters!</p>
+                    }
+                </div>
+            }
+
+            <div class="input-container">
+                <input 
+                    [class]="isFieldTextMissing('email') || isEmailNotValid ? 'input-error' : ''"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="anyone@yahoo.com"
+                    formControlName="email"
+                />
+                <label for="email">Email *</label>
+            </div>
+
+            @if (form.get('email')?.touched) {
+                <div>
+                    @if (form.get('email')?.errors?.['required']) {
+                        <p class="error">Email is required!</p>
+                    }
+                    @if (form.get('email')?.errors?.['emailValidator']) {
+                        <p class="error">Email is not valid!</p>
+                    }
+                </div>
+            }
+
+           <div class="input-container">
+                <input
+                    type="text"
+                    name="tel"
+                    id="tel"
+                    placeholder="885 888 888"
+                    formControlName="tel"
+                />
+                <label for="tel">Phone Number</label>
+            </div>
+
+            <div formGroupName="passGroup">
+                <!-- password -->
+                <div class="input-container">
+                    <input
+                        [class]="(
+                            (passGroup?.get('password')?.touched &&
+                             passGroup?.get('password')?.errors?.['required']) || 
+                             (passGroup?.get('password')?.touched &&
+                             passGroup?.get('password')?.errors?.['minlength']) 
+                        ) ? 'input-error' : ''"
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="******"
+                        formControlName="password"
+                    />
+                    <label for="password">Password *</label>
+                </div>
+
+                @if (passGroup?.get('password')?.touched) {
+                    <div>
+                        @if (passGroup?.get('password')?.errors?.['required']) {
+                            <p class="error">Password is required!</p>
+                        }
+                        @if (passGroup?.get('password')?.errors?.['minlength']) {
+                            <p class="error">Password must be at least 5 characters!</p>
+                        }
+                    </div>
+                }
+
+                <div class="input-container">
+                    <input
+                        [class]="(
+                            (passGroup?.get('rePassword')?.touched &&
+                            passGroup?.get('rePassword')?.errors?.['required']) || 
+                            (passGroup?.get('rePassword')?.touched &&
+                            passGroup?.errors?.['matchPasswordsValidator'])
+                        ) ? 'input-error' : ''"
+                        type="password"
+                        name="rePassword"
+                        id="rePassword"
+                        placeholder="******"
+                        formControlName="rePassword"
+                    />
+                    <label for="rePassword">Repeat Password *</label>
+                </div>
+
+                @if(passGroup?.get('rePassword')?.touched){
+                    <div>
+                        @if(passGroup?.errors?.['matchPasswordsValidator'] ||
+                        passGroup?.get('rePassword')?.errors?.['required']){
+                            <p class="error">Repeat Password does not match password!</p>
+                        }
+                    </div>
+                }
+            </div>
+
+            <button
+                [disabled]="form.invalid"
+                [ngClass]="{ 'disabled-btn': form.invalid, 'enabled-btn': !form.invalid }"
+            >
+                Register
+            </button>
+
+            <div class="not-register">
+                <p>Already have login?</p>
+                <a routerLink="/login">Login here</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</form>
