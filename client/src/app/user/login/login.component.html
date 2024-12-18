@@ -1,37 +1,77 @@
-<section class="login">
-    <div>
-        <p>Login Form</p>
-        <div class="input-container">
-            <input 
-            type="email"
-            name="email"
-            id="email"
-            placeholder="my.email@yahoo.com"
-            #inputEmail="ngModel"
-            ngModel
-            required
-            />
-            <label for="email">email</label>
-        </div>
-        <div class="input-container">
-            <input 
-                type="password"
-                name="password"
-                id="password"
-                placeholder="**********"
+<form class="login" #form="ngForm" (ngSubmit)="login(form)">
+    <section class="login">
+        <div>
+            <p>Login Form</p>
+
+            <div class="input-container">
+                <input 
+                [class]="(
+                    (inputEmail?.touched && inputEmail?.errors?.['required']) || 
+                    (inputEmail?.touched && inputEmail?.errors?.['emailValidator'])
+                ) ? 'input-error':''"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="my.email@yahoo.com"
+                #inputEmail="ngModel"
                 ngModel
-                #inputPassword="ngModel"
-                minlength="5"
                 required
-            />
-            <label for="password">password</label>
+                [appEmail]="domains"/>
+                <label for="email">Email</label>
+            </div>
+
+            @if (inputEmail?.touched) {
+                <div>
+                    @if (inputEmail?.errors?.['required']) {
+                        <p class="error">Email is required!</p>
+                    }
+
+                    @if (inputEmail?.errors?.['emailValidator']) {
+                        <p class="error">Email is not valid!</p>
+                    }
+                </div>
+            }
+
+            <p class="input-container">
+                <input 
+                    [class]="(
+                        (inputPassword?.touched && inputPassword?.errors?.['required']) || 
+                        (inputPassword?.touched && inputPassword?.errors?.['minlength'])
+                    ) ? 'input-error':''"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="**********"
+                    ngModel
+                    #inputPassword="ngModel"
+                    minlength="7"
+                    required
+                />
+                <label for="password">Password</label>
+            </p>
+
+            @if (inputPassword?.touched) {
+                <div>
+                    @if (inputPassword?.errors?.['required']) {
+                        <p class="error">Password is required!</p>
+                    }
+                    @if (inputPassword?.errors?.['minlength']) {
+                        <p class="error">Password must be at least 7 characters!</p>
+                    }
+                </div>
+            }
+
+            <button 
+                [disabled]="form.invalid"
+                [ngClass]="{ 'disabled-btn': form.invalid, 'enabled-btn': !form.invalid }"
+                >Login
+            </button>
+
+            <div class="not-register">
+                <p>Not registered yet?</p>
+                <a routerLink="/register">Register here</a>
+            </div>
         </div>
-        <button>
-            Login
-        </button>
-        <div class="not-register">
-            <p>Not registered yet?</p>
-            <a href="#">Register here</a>
-        </div>
-    </div>
-</section>
+    </section>
+</form>
+
