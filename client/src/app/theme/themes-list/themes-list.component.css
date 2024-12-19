@@ -7,7 +7,7 @@
 
 .single-book{
     width: 700px;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -21,11 +21,32 @@
 
 .single-book>div:first-of-type{
     background: #6bdad5;
-    border-radius: 10px 10px;
+    border-radius: 5px;
 }
 
 .created{
     font-size: 0.6em;
     text-align: end;
     color: #035c67;
+}
+
+a{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    width: 500px;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 5px;
+    background: #035c67;
+    color: white;
+    font-size: 1.4em;
+    border: none;
+    text-align: center;
+}
+
+a>p:hover{
+    background: white;
+    color: #035c67;
+    border: 1px solid #035c67;
+    cursor: pointer;
+    border-radius: 5px;
 }

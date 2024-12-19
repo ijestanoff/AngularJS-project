@@ -8,9 +8,9 @@
             <div class="single-post">
                 <a [routerLink]="['/themes/', post.themeId._id]">
                     <p>{{post.themeId.themeName}}<p>
-                    <p>Commenter: {{post.userId.username}}</p>
-                    <p><span>{{post.created_at | elapsedTime}}</span></p>
                 </a>
+                <p>Commenter: {{post.userId.username}}</p>
+                <p><span>{{post.created_at | elapsedTime}}</span></p>
             </div>
             }
         </div>
