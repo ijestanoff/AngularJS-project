@@ -10,8 +10,8 @@
         </div>
     </div>
 
-    @for (post of theme.posts; track $index) {
-    <div class="comment">
+    @for (post of theme.posts; track $index; let i = $index) {
+    <div class="comment" [class.even]="i % 2 === 0" [class.odd]="i % 2 !== 0">
         <div class="header">
             <p>
                 <span>{{post.userId.username}}</span> posted on
@@ -23,11 +23,12 @@
                 {{post.text}}
             </p>
         </div>
-        <!-- <div class="footer">
-            <p><span>{{post.likes.length || 0}}</span> likes</p>
-        </div> -->
     </div>
     }
+
+    <!-- <div class="footer">
+        <p><span>{{post.likes.length || 0}}</span> likes</p>
+    </div> -->
 
     @if(isLoggedIn) {
     <div class="comment">
