@@ -4,11 +4,12 @@ import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-current-theme',
   standalone: true,
-  imports: [HomeComponent],
+  imports: [HomeComponent, DatePipe],
   templateUrl: './current-theme.component.html',
   styleUrl: './current-theme.component.css'
 })

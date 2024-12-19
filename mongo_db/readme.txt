@@ -1,1 +1,1 @@
-mongorestore --db forum --dir ПЪТ_ДО_ЕКСПОРТА
+mongorestore -d forum path_to_forum_folder
