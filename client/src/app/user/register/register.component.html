@@ -119,7 +119,7 @@
 
             <button
                 [disabled]="form.invalid"
-                [ngClass]="{ 'disabled-btn': form.invalid, 'enabled-btn': !form.invalid }"
+                [class]="form.invalid? 'disabled-btn': 'enabled-btn'"
             >
                 Register
             </button>

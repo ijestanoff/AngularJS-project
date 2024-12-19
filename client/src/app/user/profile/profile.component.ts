@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { emailValidator } from '../../../utils/email.validator';
-import { DOMAINS } from '../../constant';
 import { ProfileDetails } from '../../types/user';
 import { UserService } from '../user.service';
+import { CommonModule } from '@angular/common';
+import { DOMAINS } from '../../constant';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

@@ -1,0 +1,75 @@
+<form #form="ngForm" (ngSubmit)="addTheme(form)">
+    <section class="addTheme">
+        <div>
+            <p>Add Book</p>
+
+            <div class="input-container">
+                <input
+                    type="text"
+                    name="themeName"
+                    id="themeName"
+                    ngModel
+                    #inputThemeName="ngModel"
+                    required
+                    minlength="4"
+                />
+                <label for="themeName">Book Name</label>
+
+                @if(inputThemeName?.touched){
+                <div>
+                    @if(inputThemeName?.errors?.['required']){
+                        <p class="error">
+                            Theme book name is required.
+                        </p>
+                    }
+                    @if(inputThemeName?.errors?.['minlength']){
+                        <p class="error">
+                            Theme book name must be at least 4 characters long.
+                        </p>
+                    }
+                </div>
+                }
+            </div>
+
+            <div class="input-container">
+                <textarea
+                    type="text"
+                    name="postText"
+                    id="postText"
+                    rows="8"
+                    class="height"
+                    #inputPostText="ngModel"
+                    ngModel
+                    required
+                    minlength="10"
+                ></textarea>
+                <label for="postText">Description</label>
+
+                @if(inputPostText?.touched){
+                    <div>
+                        @if(inputPostText?.errors?.['required']){
+                            <p class="error">
+                                The book description is required.
+                            </p>
+                        }
+                        @if(inputPostText?.errors?.['minlength']){
+                            <p class="error">
+                                The book description must be at least 10 characters long.
+                            </p>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="row-buttons">
+                <button class="cancel" (click)="onCancel($event)">Cancel</button>
+                <button 
+                    [disabled]="form.invalid"
+                    [class]="form.invalid? 'disabled-btn': 'enabled-btn'"
+                    >Add Book
+                </button>
+            </div>
+            
+        </div>
+    </section>
+</form>

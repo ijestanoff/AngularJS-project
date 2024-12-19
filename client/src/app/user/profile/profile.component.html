@@ -1,98 +1,91 @@
-<div class="container">
-    <div class="profile"><img src="./profile.png" alt="default user">
-        <h3>User Info:</h3>
+        
+@if(!isEditMode) {
+    <section class="display-profile">
+        <div>
+            <p>Profile Details:</p>
+            <div class="display">
+                <p>Username: </p>
+                <p>{{profileDetails.username}}</p>
+            </div>
+            <div class="display">
+                <p>Email: </p>
+                <p>{{profileDetails.email}}</p>
+            </div>
+            <div class="display">
+                <p>Phone: </p>
+                <p>{{profileDetails.tel}}</p>
+            </div>
+            <button class="edit-button" (click)="toggleEditMode()">Edit</button>
+        </div>
+    </section>
+} @else {
+    <form [formGroup]="form" (ngSubmit)="handleSaveProfile()">
+        <section class="edit-profile">
+            <div>
+                <p>Edit Profile</p>
+                <div class="input-container">
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        formControlName="username"
+                    >
+                    <label for="username">Full Name *</label>
+                </div>
 
-        @if(!isEditMode) {
+                @if (form.get('username')?.touched) {
+                    <div>
+                        @if (form.get('username')?.errors?.['required']) {
+                            <p class="error">Username is required!</p>
+                        }
+                        @if (form.get('username')?.errors?.['minlength']) {
+                            <p class="error">Username must be at least 5 characters!</p>
+                        }
+                    </div>
+                }
 
-            <!-- READONLY MODE -->
-            <ng-container>
-                <div class="flex">
-                    <p>Username: </p>
-                    <p>{{profileDetails.username}}</p>
+                <div class="input-container">
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        formControlName="email"
+                    >
+                    <label for="email">Email *</label>
                 </div>
-                <div class="flex">
-                    <p>Email: </p>
-                    <p>{{profileDetails.email}}</p>
-                </div>
-                <div class="flex">
-                    <p>Phone: </p>
-                    <p>{{profileDetails.tel}}</p>
-                </div>
-                <button class="edit-button" (click)="toggleEditMode()">Edit</button>
-            </ng-container>
-        } @else {
-            <!-- EDIT MODE -->
-            <ng-container>
-                <form [formGroup]="form" (ngSubmit)="handleSaveProfile()">
-                    <div class="flex">
-                        <p>Username: </p>
+
+                @if (form.get('email')?.touched) {
+                    <div>
+                        @if (form.get('email')?.errors?.['required']) {
+                            <p class="error">Email is required!</p>
+                        }
+                        @if (form.get('email')?.errors?.['emailValidator']) {
+                            <p class="error">Email is not valid!</p>
+                        }
+                    </div>
+                }
+
+                <div class="input-container">
+                    <div>
                         <input
                             type="text"
-                            name="username"
-                            id="username"
-                            formControlName="username"
+                            name="tel"
+                            id="tel"
+                            formControlName="tel"
                         >
                     </div>
+                    <label for="tel">Phone Number</label>
+                </div>
 
-                    @if (form.get('username')?.touched) {
-                        <div>
-                            @if (form.get('username')?.errors?.['required']) {
-                                <p class="error">Username is required!</p>
-                            }
-                            @if (form.get('username')?.errors?.['minlength']) {
-                                <p class="error">Username must be at least 5 characters!</p>
-                            }
-                        </div>
-                    }
+                <div class="edit-cancel-btn">
+                    <button (click)="onCancel($event)">Cancel</button>
+                    <button
+                        [disabled]="form.invalid"
+                        [class]="form.invalid? 'disabled-btn': 'enabled-btn'"
+                    >Save</button>
+                </div>
+            </div>
+        </section>
+    </form>
+}
 
-                    <div class="flex">
-                        <p>Email: </p>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            formControlName="email"
-                        >
-                    </div>
-
-                    @if (form.get('email')?.touched) {
-                        <div>
-                            @if (form.get('email')?.errors?.['required']) {
-                                <p class="error">Email is required!</p>
-                            }
-                            @if (form.get('email')?.errors?.['emailValidator']) {
-                                <p class="error">Email is not valid!</p>
-                            }
-                        </div>
-                    }
-
-                    <div class="flex">
-                        <p>Phone: </p>
-                        <div>
-                            <select name="select-tel" id="select-tel" class="tel">
-                                <option value="00359">+359</option>
-                            </select>
-                            <input
-                                type="text"
-                                name="tel"
-                                id="tel"
-                                formControlName="tel"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="btn-wrapper">
-                        <button class="red-button" (click)="onCancel($event)">Cancel</button>
-                        <button
-                            class="green-button"
-                            [disabled]="form.invalid"
-                            [style]="{backgroundColor: form.invalid ? 'grey' : '#5cb85c' }"
-                        >Save</button>
-                    </div>
-                </form>
-            </ng-container>
-        }
-
-        
-    </div>
-</div>

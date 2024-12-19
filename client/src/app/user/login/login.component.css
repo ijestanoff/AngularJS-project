@@ -90,7 +90,6 @@ p.error {
     margin: 0 100px;
 
     position: fixed;
-    /* top: 50%; */
     left: 45%;
     transform: translate(-50%, -50%);
     background: #f8d7da;
@@ -103,7 +102,6 @@ p.error {
 }
 
 .input-error {
-    border-left-color: red;
     border-color: red;
 }
 

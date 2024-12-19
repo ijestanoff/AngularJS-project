@@ -1,5 +1,5 @@
-/* ---------------Footer ---------------------- */
 footer{
+    font-family:"Poppins", sant-serif;
     background: #06262d;
     height: 200px;
     padding: 40px;
@@ -47,4 +47,24 @@ span{
 span>a>i{
     color: white;
     margin-top: 30px;
+}
+
+.logo {
+    margin: 10px 100px;
+    display: flex;
+    width: 350px;
+}
+
+svg{
+    .cls-1{fill:#6bdad5;}
+    .cls-2{fill:#ff4438;}
+    .cls-3{fill:#035c67;}
+}
+
+.logo:hover{
+    .cls-1{fill:black;
+        transition: fill 0.6s ease;}
+    .cls-2{fill:black;
+        transition: fill 0.3s ease;}
+    .cls-3{fill:black}
 }

@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../../utils/email.validator';
-import { DOMAINS } from '../../constant';
 import { matchPasswordsValidator } from '../../../utils/match-passwords.validators';
 import { UserService } from '../user.service';
-import { CommonModule } from '@angular/common';
+import { DOMAINS } from '../../constant';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

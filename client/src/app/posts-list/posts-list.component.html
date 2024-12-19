@@ -1,0 +1,18 @@
+<aside>
+    @if (isLoading) {
+        <app-loader />
+    }@else {
+        <div class="post">
+            <p class="head">Recent coments</p>
+            @for (post of posts; track $index) {
+            <div class="single-post">
+                <a [routerLink]="['/themes/', post.themeId._id]">
+                    <p>{{post.themeId.themeName}}<p>
+                    <p>Commenter: {{post.userId.username}}</p>
+                    <p><span>{{post.created_at | elapsedTime}}</span></p>
+                </a>
+            </div>
+            }
+        </div>
+    }
+</aside>
