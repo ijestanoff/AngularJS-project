@@ -1,0 +1,1 @@
+mongorestore --db forum --dir ПЪТ_ДО_ЕКСПОРТА
