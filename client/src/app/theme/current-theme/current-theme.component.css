@@ -4,11 +4,12 @@
     margin: 20px auto;
 }
 
-.book-title{
+.book-title,
+.comment{
     width: 80%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border-radius: 8px;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 10px;
 }
 
@@ -46,4 +47,36 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 5px;
+}
+
+form{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+textarea{
+    width: 95%;
+    padding: 20px;
+}
+
+button{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    width: 500px;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 5px;
+    background: #035c67;
+    color: white;
+    font-size: 1.4em;
+    border: none;
+}
+
+button:hover{
+    background: inherit;
+    color: #035c67;
+    border: 1px solid #035c67;
+    cursor: pointer;
 }
