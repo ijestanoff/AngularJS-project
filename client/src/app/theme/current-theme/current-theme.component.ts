@@ -18,21 +18,19 @@ export class CurrentThemeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
 
-  get isLoggedIn():boolean {
+  get isLoggedIn(): boolean {
     return this.userService.isLogged;
   }
 
-  get username():string {
+  get username(): string {
     return this.userService.user?.username || '';
   }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['themeId'];
 
-    this.apiService.getSingleTheme(id).subscribe(theme=> {
-      // console.log(theme);
+    this.apiService.getSingleTheme(id).subscribe(theme => {
       this.theme = theme;
-      
     });
   }
 }

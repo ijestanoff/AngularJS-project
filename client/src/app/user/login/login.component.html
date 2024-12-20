@@ -2,7 +2,6 @@
     <section class="login">
         <div>
             <p>Login Form</p>
-
             <div class="input-container">
                 <input 
                 [class]="(
@@ -61,14 +60,17 @@
                 </div>
             }
 
-            <!-- [ngClass]="{ 'disabled-btn': form.invalid, 'enabled-btn': !form.invalid }" -->
             <button 
                 [disabled]="form.invalid"
                 [class]="form.invalid? 'disabled-btn': 'enabled-btn'"
                 >Login
             </button>
+            
 
             <div class="not-register">
+                @if (message == 'Wrong email or password') {
+                    <p class="error">{{message}}</p>
+                }
                 <p>Not registered yet?</p>
                 <a routerLink="/register">Register here</a>
             </div>
