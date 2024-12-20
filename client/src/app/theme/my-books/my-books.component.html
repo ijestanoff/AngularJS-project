@@ -4,6 +4,7 @@
 <div class="books">
     <p class="head">My Books Catalog</p>
     @for (theme of themes; track $index) {
+    @if (username==theme.userId.username){
     <div class="single-book">
         <div>
             <a [routerLink]="['../themes',theme._id]">
@@ -16,6 +17,7 @@
             <p class="created">Created at: <time>{{theme.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time></p>
         </div>
     </div>
+    }
     }
 </div>
 }
