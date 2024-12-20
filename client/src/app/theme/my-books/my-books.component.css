@@ -7,7 +7,9 @@
     min-height: 550px;
 }
 
-
+h1{
+    text-align: center;
+}
 
 .single-book{
     width: 700px;

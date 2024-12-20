@@ -10,23 +10,29 @@ import { UserService } from '../../user/user.service';
 @Component({
   selector: 'app-my-books',
   standalone: true,
-  imports: [LoaderComponent,RouterLink, SlicePipe, DatePipe],
+  imports: [LoaderComponent, RouterLink, SlicePipe, DatePipe],
   templateUrl: './my-books.component.html',
   styleUrl: './my-books.component.css'
 })
 export class MyBooksComponent implements OnInit {
   themes: Theme[] = [];
+  myThemes: Theme[] = [];
   isLoading = true;
 
-  constructor(private userService: UserService, private apiService: ApiService) {}
+  constructor(private userService: UserService, private apiService: ApiService) { }
 
-  get username():string {
+  get username(): string {
     return this.userService.user?.username || '';
   }
 
   ngOnInit() {
     this.apiService.getThemes().subscribe(themes => {
       this.themes = themes;
+      this.themes.forEach(theme => {
+        if (theme.userId.username == (this.userService.user?.username || '')) {
+          this.myThemes.push(theme);
+        }
+      });
       this.isLoading = false;
     });
   }

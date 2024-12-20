@@ -26,7 +26,9 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getThemes().subscribe(themes => {
-      this.themes = themes;
+      this.themes = themes
+        .sort((a,b) => Date.parse(b.created_at) -  Date.parse(a.created_at))
+        .slice(-3);
       this.isLoading = false;
     });
   }
