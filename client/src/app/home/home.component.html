@@ -1,27 +1,14 @@
-<!-- homepage -->
-<div class="container">
-    <div class="welcome">
-        <h3>Welcome!</h3>
-        
-        <p>SoftUni forum is a place, where you can post your questions, comment, and discuss problems, which
-            you have in your programming language or in your study in SoftUni.</p>
-        @if(!isLoggedIn) {
-        <div class="logged">
-            <ul>
-                <li>
-                    <a routerLink="/login">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Login
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/register">
-                        <i class="fas fa-user-plus"></i>
-                        Register
-                    </a>
-                </li>
-            </ul>
+<div class="welcome">
+    @if(!isLoggedIn) {
+        <p class="head">To take advantage of the full functionality of our website, please log in.</p>
+        <div class="row-buttons">
+            <a routerLink="/login">
+                Login
+            </a>
+            <a routerLink="/register">
+                Register
+            </a>
         </div>
         }
-    </div>
+    <img src="SteveLambert-Library.svg" alt="Example SVG">
 </div>
