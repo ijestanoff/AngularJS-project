@@ -1,51 +1,72 @@
-.mainbox {
-    margin: auto;
-    height: 550px;
-    width: 550px;
-    position: relative;
+* {
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.75);
 }
 
-.err {
-    color: #234465;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position: absolute;
-    left: 20%;
-    top: 8%;
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0px 30px;
+    background: #ddd;
 }
 
-.far {
-    position: absolute;
-    font-size: 8.5rem;
-    left: 42%;
-    top: 15%;
-    color: #234465;
+.wrapper {
+    max-width: 960px;
+    width: 100%;
+    margin: 30px auto;
+    /* transform: scale(0.8); */
 }
 
-.err2 {
-    color: #234465;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position: absolute;
-    left: 68%;
-    top: 8%;
+.landing-page {
+    max-width: 960px;
+    height: 475px;
+    margin: 0;
+    box-shadow: 0px 0px 8px 1px #ccc;
+    background: #fafafa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.msg {
+svg {
+    width: 80%;
+    max-height: 280px;
+    height: auto;
+    margin: 30 0 15px;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+p {
+    font-size: 16px;
+    width: 35%;
+    margin: 16px auto 24px;
     text-align: center;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.6rem;
-    position: absolute;
-    left: 16%;
-    top: 45%;
-    width: 75%;
 }
 
-a {
-    text-decoration: none;
-    color: #234465;
+button{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    width: 500px;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 5px;
+    background: #035c67;
+    color: white;
+    font-size: 1.4em;
+    border: none;
 }
 
-a:hover {
-    text-decoration: underline;
+button:hover{
+    background: inherit;
+    color: #035c67;
+    border: 1px solid #035c67;
+    cursor: pointer;
 }
