@@ -1,0 +1,29 @@
+@if (isLoading) {
+    <app-loader />
+    }@else{
+    <div class="books">
+        <p class="head">Welcome to Public Library</p>
+        <p>We’re thrilled to have you here, where stories come alive, curiosity thrives, and knowledge knows</p>
+        <p>no bounds. Whether you’re looking for your next great read, exploring digital resources, attending</p>
+        <p>engaging events, or simply seeking a cozy corner to learn and create, we have something for everyone.</p>
+        <p>Our friendly staff is here to help you discover all that we offer—books, technology,</p>
+        <p>study spaces, and so much more.</p>
+        <p class="head2">Here you find latest 3 added books:</p>
+        @for (theme of themes; track $index) {
+            <!-- @if (username==theme.userId.username){ -->
+            <div class="single-book">
+                <div>
+                    <a [routerLink]="['../themes',theme._id]">
+                        <p class="head2">{{theme.themeName | slice: 25}} </p>
+                    </a>
+                </div>
+                <div>
+                    <p>Creator: <span>{{theme.userId.username}}</span></p>
+                    <p>Subscribers: <span>{{theme?.subscribers?.length || 0}}</span></p>
+                    <p class="created">Created at: <time>{{theme.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time></p>
+                </div>
+            </div>
+            <!-- } -->
+        }
+    </div>
+    }

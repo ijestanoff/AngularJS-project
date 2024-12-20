@@ -4,20 +4,20 @@
 <div class="books">
     <p class="head">My Books Catalog</p>
     @for (theme of themes; track $index) {
-    @if (username==theme.userId.username){
-    <div class="single-book">
-        <div>
-            <a [routerLink]="['../themes',theme._id]">
-                <p class="head2">{{theme.themeName | slice: 25}} </p>
-            </a>
+        @if (username==theme.userId.username){
+        <div class="single-book">
+            <div>
+                <a [routerLink]="['../themes',theme._id]">
+                    <p class="head2">{{theme.themeName | slice: 25}} </p>
+                </a>
+            </div>
+            <div>
+                <p>Creator: <span>{{theme.userId.username}}</span></p>
+                <p>Subscribers: <span>{{theme?.subscribers?.length || 0}}</span></p>
+                <p class="created">Created at: <time>{{theme.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time></p>
+            </div>
         </div>
-        <div>
-            <p>Creator: <span>{{theme.userId.username}}</span></p>
-            <p>Subscribers: <span>{{theme?.subscribers?.length || 0}}</span></p>
-            <p class="created">Created at: <time>{{theme.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time></p>
-        </div>
-    </div>
-    }
+        }
     }
 </div>
 }

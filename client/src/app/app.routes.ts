@@ -10,6 +10,7 @@ import { CurrentThemeComponent } from './theme/current-theme/current-theme.compo
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { MyBooksComponent } from './theme/my-books/my-books.component';
+import { WelcomeComponent } from './core/welcome/welcome.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,7 +41,7 @@ export const routes: Routes = [
         component: MyBooksComponent,
         canActivate: [AuthGuard],
      },
-
+    { path: 'welcome', component: WelcomeComponent},
     { path: 'error', component: ErrorMsgComponent},
     { path: '404', component: PageNotFoundComponent },
     { path: '**', redirectTo: '404' },
