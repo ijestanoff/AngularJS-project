@@ -2,7 +2,6 @@
     <section class="addTheme">
         <div>
             <p>Add Book</p>
-
             <div class="input-container">
                 <input
                     type="text"
@@ -19,12 +18,12 @@
                 <div>
                     @if(inputThemeName?.errors?.['required']){
                         <p class="error">
-                            Theme book name is required.
+                            The book name is required.
                         </p>
                     }
                     @if(inputThemeName?.errors?.['minlength']){
                         <p class="error">
-                            Theme book name must be at least 4 characters long.
+                            The book name must be at least 4 characters long.
                         </p>
                     }
                 </div>
@@ -69,7 +68,6 @@
                     >Add Book
                 </button>
             </div>
-            
         </div>
     </section>
 </form>

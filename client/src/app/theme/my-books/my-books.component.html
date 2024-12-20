@@ -2,11 +2,11 @@
 <app-loader />
 }@else{
 <div class="books">
-    <p class="head">Books Catalog</p>
+    <p class="head">My Books Catalog</p>
     @for (theme of themes; track $index) {
     <div class="single-book">
         <div>
-            <a [routerLink]="theme._id">
+            <a [routerLink]="['../themes',theme._id]">
                 <p class="head2">{{theme.themeName | slice: 25}} </p>
             </a>
         </div>

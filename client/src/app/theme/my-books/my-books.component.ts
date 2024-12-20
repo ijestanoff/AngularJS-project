@@ -1,0 +1,28 @@
+import { Component, OnInit } from '@angular/core';
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { RouterLink } from '@angular/router';
+import { SlicePipe } from '../../shared/pipes/slice.pipe';
+import { DatePipe } from '@angular/common';
+import { ApiService } from '../../api.service';
+import { Theme } from '../../types/theme';
+
+@Component({
+  selector: 'app-my-books',
+  standalone: true,
+  imports: [LoaderComponent,RouterLink, SlicePipe, DatePipe],
+  templateUrl: './my-books.component.html',
+  styleUrl: './my-books.component.css'
+})
+export class MyBooksComponent implements OnInit {
+  themes: Theme[] = [];
+  isLoading = true;
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.getThemes().subscribe(themes => {
+      this.themes = themes;
+      this.isLoading = false;
+    });
+  }
+}

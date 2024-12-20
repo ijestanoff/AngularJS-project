@@ -9,25 +9,23 @@ import { MainComponent } from './main/main.component';
 import { CurrentThemeComponent } from './theme/current-theme/current-theme.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
+import { MyBooksComponent } from './theme/my-books/my-books.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
 
-    // Start User routing
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
-    // End User routing
 
-    // Start Theme routing
     {
         path: 'themes', children: [
             { path: '', component: MainComponent },
             { 
                 path: ':themeId',
                 component: CurrentThemeComponent,
-                canActivate: [AuthGuard]
+                // canActivate: [AuthGuard]
              },
         ]
     },
@@ -38,7 +36,10 @@ export const routes: Routes = [
         ),
         canActivate: [AuthGuard],
       },
-    // End Theme routing
+      { path: 'my-books',
+        component: MyBooksComponent,
+        canActivate: [AuthGuard],
+     },
 
     { path: 'error', component: ErrorMsgComponent},
     { path: '404', component: PageNotFoundComponent },
