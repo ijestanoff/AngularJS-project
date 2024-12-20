@@ -10,10 +10,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts(limit?:number) {
+  getPosts(limit?: number) {
     let url = `/api/posts`;
     if (limit) {
-      url+=`?limit=${limit}`;
+      url += `?limit=${limit}`;
     }
     return this.http.get<Post[]>(url);
   }
@@ -22,30 +22,35 @@ export class ApiService {
     return this.http.get<Theme[]>(`/api/themes`);
   }
 
-  getSingleTheme(id:string){
+  getSingleTheme(id: string) {
     return this.http.get<Theme>(`/api/themes/${id}`);
   }
 
   createTheme(themeName: string, postText: string) {
-    const payload = { themeName, postText};
+    const payload = { themeName, postText };
     return this.http.post<Theme>(`/api/themes`, payload);
   }
 
   // CRUD perations
   // update -> http.put
   updateTheme(themeId: string, themeName: string, postText: string) {
-    const payload = { themeName, postText};
+    const payload = { themeName, postText };
     return this.http.put<Theme>(`/api/themes/${themeId}`, payload);
   }
 
+  createPost(themeId: string, postText: string) {
+    const payload = { postText };
+    return this.http.post<Theme>(`/api/themes/${themeId}`, payload);
+  }
+
   updatePost(themeId: string, postId: string) {
-    const payload = { };
+    const payload = {};
     return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, payload);
   }
 
   // delete -> http.delete theme ID 
-  deletePost(themeId: string, postId: string){
-    return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
+  deletePost(themeId: string, postId: string) {
+    return this.http.delete<Theme>(`/api/themes/${themeId}/posts/${postId}`);
   }
 
 }
