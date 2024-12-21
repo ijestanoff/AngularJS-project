@@ -10,48 +10,59 @@
         </div>
     </div>
 
-    @for (post of theme.posts; track $index; let i = $index) {
-    <div class="comment" [class.even]="i % 2 === 0" [class.odd]="i % 2 !== 0">
-        <div class="header">
-            <p>
-                <span>{{post.userId.username}}</span> posted on
-                <time>{{post.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time>
-            </p>
-        </div>
-        <div class="post-content">
-            <p>
-                {{post.text}}
-            </p>
-            @if (post.userId.username == username){
-            <div>
-                <button class="btn-del" (click)="onDelete($event, post._id)">Delete</button>
-                <button class="btn-edit" (click)="onEdit($event)">Edit</button>
+    @if(!isEditMode){
+        @for (post of theme.posts; track $index; let i = $index) {
+        <div class="comment" [class.even]="i % 2 === 0" [class.odd]="i % 2 !== 0">
+            <div class="header">
+                <p>
+                    <span>{{post.userId.username}}</span> posted on
+                    <time>{{post.created_at | date:'yyyy-mm-dd hh:mm:ss'}}</time>
+                </p>
             </div>
-            }
+            <div class="post-content">
+                <p>
+                    {{post.text}}
+                </p>
+                @if (post.userId.username == username){
+                <div>
+                    <button class="btn-del" (click)="onDelete($event, post._id)">Delete</button>
+                    <button class="btn-edit" (click)="toggleEditMode($event, post._id, post.text)">Edit</button>
+                </div>
+                }
+            </div>
         </div>
-    </div>
-    }
+        }
 
-    <!-- <div class="footer">
-        <p><span>{{post.likes.length || 0}}</span> likes</p>
-    </div> -->
-
-    @if(isLoggedIn) {
-    <div class="comment">
-        <p><span>{{username}}</span> comment:</p>
-        <div class="answer">
-            <form #form="ngForm" (ngSubmit)="addComment(form)">
-                <textarea
-                    name="postText"
-                    id="postText"
-                    ngModel
-                    #inputThemeName="ngModel"
-                    cols="30"
-                    rows="10"></textarea>
-                <button class="post">Post</button>
-            </form>
+        @if(isLoggedIn) {
+        <div class="comment">
+            <p><span>{{username}}</span> comment:</p>
+            <div class="answer">
+                <form #form="ngForm" (ngSubmit)="addComment(form)">
+                    <textarea name="postText" id="postText" ngModel #inputThemeName="ngModel" cols="30"
+                        rows="10"></textarea>
+                    <button class="post">Post</button>
+                </form>
+            </div>
         </div>
-    </div>
+        }
+    }@else {
+        <div class="comment">
+            <p><span>{{username}}</span> comment:</p>
+            <div class="answer">
+                <form #form="ngForm" (ngSubmit)="editComment(form)">
+                    <textarea
+                        name="postText"
+                        id="postText"
+                        ngModel
+                        #inputThemeName="ngModel"
+                        cols="30"
+                        rows="10"
+                       [(ngModel)]="postText">
+                    </textarea>
+                    <button class="post">Edit Post</button>
+                </form>
+            </div>
+        </div>
     }
 
 </div>

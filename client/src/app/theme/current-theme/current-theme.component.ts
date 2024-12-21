@@ -6,7 +6,6 @@ import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Post } from '../../types/post';
 
 @Component({
   selector: 'app-current-theme',
@@ -17,6 +16,9 @@ import { Post } from '../../types/post';
 })
 export class CurrentThemeComponent implements OnInit {
   theme = {} as Theme;
+  isEditMode: boolean = false;
+  postId: string = '';
+  postText: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,20 +35,51 @@ export class CurrentThemeComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
-  addComment(form: NgForm) {
-      if(form.invalid) {
-        return;
-      }
-  
-      const {postText} = form.value;
-      
-      this.apiService.createPost(this.theme._id, postText).subscribe(() => {
-        // this.router.navigate(['/themes', this.theme._id]);
-        // this.router.navigate(['/themes']);
+  toggleEditMode(event: Event, postId: string, postText: string) {
+    event.preventDefault();
+    this.isEditMode = !this.isEditMode;
+    this.postId = postId;
+    this.postText = postText;
+  }
 
-        window.location.reload();
-      });
+  addComment(form: NgForm) {
+    if (form.invalid) {
+      return;
     }
+
+    const { postText } = form.value;
+
+    this.apiService.createPost(this.theme._id, postText).subscribe(() => {
+      this.router.navigateByUrl('/themes', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/themes', this.theme._id]);
+      });
+    });
+  }
+
+  editComment(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    const { postText } = form.value;
+
+    this.apiService.updatePost(this.theme._id, this.postId, postText).subscribe(() => {
+      this.router.navigateByUrl('/themes', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/themes', this.theme._id]);
+      });
+    });
+  }
+
+  onDelete(event: Event, postId: string) {
+    event.preventDefault();
+    console.log(this.theme._id, postId);
+
+    this.apiService.deletePost(this.theme._id, postId).subscribe(() => {
+      this.router.navigateByUrl('/themes', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/themes', this.theme._id]);
+      });
+    });
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['themeId'];
@@ -54,21 +87,5 @@ export class CurrentThemeComponent implements OnInit {
     this.apiService.getSingleTheme(id).subscribe(theme => {
       this.theme = theme;
     });
-  }
-
-  onDelete(event: Event, postId: string){
-    event.preventDefault();
-    console.log(this.theme._id,postId);
-    
-    this.apiService.deletePost(this.theme._id, postId).subscribe(() => {
-
-      window.location.reload();
-    });
-    // this.router.navigate(['/themes']);
-  }
-
-  onEdit(event: Event){
-    event.preventDefault();
-    // this.router.navigate(['/themes']);
   }
 }

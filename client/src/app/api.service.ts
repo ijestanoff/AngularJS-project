@@ -31,8 +31,6 @@ export class ApiService {
     return this.http.post<Theme>(`/api/themes`, payload);
   }
 
-  // CRUD perations
-  // update -> http.put
   updateTheme(themeId: string, themeName: string, postText: string) {
     const payload = { themeName, postText };
     return this.http.put<Theme>(`/api/themes/${themeId}`, payload);
@@ -43,14 +41,12 @@ export class ApiService {
     return this.http.post<Theme>(`/api/themes/${themeId}`, payload);
   }
 
-  updatePost(themeId: string, postId: string) {
-    const payload = {};
+  updatePost(themeId: string, postId: string, postText: string) {
+    const payload = { postText };
     return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, payload);
   }
 
-  // delete -> http.delete theme ID 
   deletePost(themeId: string, postId: string) {
     return this.http.delete<Theme>(`/api/themes/${themeId}/posts/${postId}`);
   }
-
 }
